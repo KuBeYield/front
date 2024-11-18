@@ -1,0 +1,10 @@
+/* App.css */
+
+/* 로딩 화면 애니메이션 */
+.loading-fade {
+    transition: opacity 5s ease-out; /* opacity가 서서히 변하도록 설정 */
+}
+
+.loading-fade.fade-out {
+    opacity: 0; /* 클래스가 추가되면 opacity를 0으로 */
+}

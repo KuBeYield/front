@@ -1,38 +1,125 @@
-.App {
+/* 기본 스타일 초기화 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 전체 컨테이너 */
+.main-container {
+  width: 350px;
+  height: 800px;
+  /* max-width: max-content;
+  max-height: max-content; */
+  /* max-width: 480px; 모바일 화면 크기 */
+  /* background: #F5E2E2; */
+  background-image: url("assets/background.png");
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* 헤더 스타일 */
+.header {
+  margin-bottom: 16px;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.titles{
+  margin-top: 100px;
+  margin-left: 46px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header h1 {
+  font-size: 37px;
+  color: #494848;
+  text-align: left;
+  margin: 0%;
 }
 
-.App-link {
-  color: #61dafb;
+.header p {
+  font-size: 14px;
+  color: #666;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 이미지 왼쪽 정렬 */
+.header .header-image {
+  display: block;
+  margin-left: 0;  /* 왼쪽으로 정렬 */
+  margin-right: auto;  /* 오른쪽 여백을 자동으로 설정하여 왼쪽 정렬 */
+}
+
+/* line-div 왼쪽 정렬 */
+.header .line-div {
+  text-align: left;  /* 텍스트와 이미지 왼쪽 정렬 */
+  margin-left: 46px;  /* 왼쪽으로 정렬 */
+}
+
+.title-kr{
+  text-align: left;  /* 텍스트와 이미지 왼쪽 정렬 */
+  margin-left: 46px;  /* 왼쪽으로 정렬 */
+  font-family: 'IBM Plex Sans KR';
+  font-weight: bold;
+}
+
+/* header-image에 절대 위치 설정 */
+.header .header-image {
+  position: absolute;  /* 절대 위치 */
+  width: 212px;
+  top: 100px;           /* 원하는 Y 좌표 */
+  left: 150px;          /* 원하는 X 좌표 */
+  /* 필요에 따라 top, left 값을 수정하여 원하는 위치로 조정 */
+}
+
+.content{
+  margin-top: 100px;
+}
+/* 버튼 스타일 */
+.button {
+  font-family: 'IBM Plex Sans KR';
+  font-weight: bold;
+  display: block;
+  width: 80%;
+  height: 56px;
+  margin: 40px auto;
+  padding: 12px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background: #ffffff;
+  opacity: 60%;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: #ff5c9e;
+}
+
+/* 다이어리 섹션 */
+.diary-section {
+  margin-top: 16px;
+}
+
+.diary-button {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #333;
+  margin: auto;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }

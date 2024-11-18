@@ -1,0 +1,81 @@
+.login-container{
+    width: 350px;
+    height: 800px;
+    /* max-width: max-content;
+    max-height: max-content; */
+    /* max-width: 480px; 모바일 화면 크기 */
+    /* background: #F5E2E2; */
+    background-image: url("../assets/background.png");
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.back-button {
+    display: flex;
+    align-items: center; /* 세로로 가운데 정렬 */
+    width: 100%; /* 부모 컨테이너의 100% 넓이 차지 */
+    margin-top: 10px;
+}
+
+.title2 {
+    margin-left: 40px; /* 제목을 왼쪽에 20px 만큼 띄워줌 */
+    font-size: 24px; /* 제목 크기 조정 */
+    font-weight: bold; /* 제목에 볼드 적용 */
+    font-family: "STIX Two Text", serif;
+    color: #494848;
+}
+
+/* 사각형 이미지 (부모 컨테이너로 사용) */
+.rectangle-box {
+    position: relative; /* 자식 요소의 기준점이 될 수 있도록 설정 */
+    top: 50%; 
+    left: 49.9%; 
+    transform: translate(-50%, -50%);
+    width: 393px;
+    height: 773px;
+    background-image: url("../assets/rectangle.png");
+    background-size: cover; /* 이미지 크기 조정 */
+    background-position: center; /* 이미지 중앙 정렬 */
+}
+
+
+/* 로그인 폼 */
+.login-form {
+    position: absolute; /* 부모 컨테이너 내에서 절대 위치 설정 */
+    top: 40%; /* 사각형의 상단에서 약간 아래로 위치 */
+    left: 50%;
+    transform: translate(-50%, -50%); /* 정확히 가운데 정렬 */
+    width: 80%; /* 폼의 넓이 */
+    text-align: center;
+}
+
+.login-form input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px; /* 입력 필드 사이 간격 */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff5c9e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #ff77b5;
+}
+
+
