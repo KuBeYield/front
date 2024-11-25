@@ -32,6 +32,7 @@ const WriteLetter= () => {
         const formattedDate = `${year}-${month}-${day}`;
         setDate(formattedDate);
         alert(`날짜가 설정되었습니다: ${formattedDate}`);
+        setIsDateModalOpen(false)
     };
   
     const handleSend = () => {
@@ -58,7 +59,7 @@ const WriteLetter= () => {
             <Header2 />
             {/* 사각형 박스 */}
             <div className="rectangle-box">
-    <div className="letter-container">
+                <div className="letter-container">
                     <input
                         className="input-field"
                         type="text"
@@ -129,12 +130,12 @@ const WriteLetter= () => {
                             <button className="date-complete-button" onClick={handleDateComplete}>
                             날짜 설정 완료하기
                             </button>
-                            <button
+                            {/* <button
                             className="modal-close-button"
                             onClick={() => setIsDateModalOpen(false)}
                             >
                             닫기
-                            </button>
+                            </button> */}
                         </div>
                         </div>
                     )}

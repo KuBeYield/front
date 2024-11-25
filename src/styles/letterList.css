@@ -1,0 +1,46 @@
+.main-container {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.letters-container {
+    margin-top: 80px;
+    align-items: center;
+    gap: 16px;
+}
+
+.letter-card {
+    width: 332px;
+    margin-bottom: 18px;
+    background: linear-gradient(145deg, #fff, #f0f0f0);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.letter-card:hover {
+    transform: scale(1.02);
+}
+
+.letter-info p {
+    margin: 0;
+    color: #555;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mail-icon {
+    width: 40px;
+    height: 40px;
+}

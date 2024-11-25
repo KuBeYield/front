@@ -1,0 +1,41 @@
+.letter-content {
+    
+}
+
+.letter-details-card {
+    border-radius: 12px;
+    width: 90%;
+    padding: 20px;
+    text-align: left;
+    color: #898888;
+    background-image: url("../assets/letter_paper.png");
+    position: relative; /* 자식 요소의 기준점이 될 수 있도록 설정 */
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 804px;
+    background-size: cover; /* 이미지 크기 조정 */
+    background-position: center; /* 이미지 중앙 정렬 */
+}
+
+.letter-details-card h2 {
+    margin-top: 0;
+    color: #555;
+}
+
+.letter-date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.letter-content {
+    margin-bottom: 16px;
+}
+
+.letter-sender {
+    font-size: 14px;
+    color: #555;
+    text-align: right;
+}

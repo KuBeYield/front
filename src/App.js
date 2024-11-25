@@ -6,6 +6,7 @@ import Header from "./components/header.js";
 import Login from "./pages/login.js";
 import SignupPage from "./pages/signUp.js";
 import HomePage from "./pages/home.js";
+import LetterDetails from "./pages/letterDetails";
 import HomeBeforeLogin from "./pages/homeBeforeLogin.js";
 import WriteLetter from "./pages/writeLetter.js";
 import ReadLetter from "./pages/readLetter.js";
@@ -32,8 +33,12 @@ function App() {
             {/* 웹 서비스 소개 페이지 */}
             <Route
               path="/"
-              element={loggedIn ? <HomePage /> : <HomeBeforeLogin />}
+              element={loggedIn ? <HomePage /> : <HomePage />}
             />
+            {/* <Route
+              path="/"
+              element={loggedIn ? <HomePage /> : <HomeBeforeLogin />}
+            /> */}
             {/* <LogIn /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignupPage />} />
@@ -41,6 +46,7 @@ function App() {
             <Route path="/write" element={<WriteLetter />} />
             <Route path="/read" element={<ReadLetter />} />
             <Route path="/list" element={<LetterList />} />
+            <Route path="/letter/:id" element={<LetterDetails />} />
           </Routes>
         )}
       </div>
