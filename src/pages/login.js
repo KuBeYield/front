@@ -71,9 +71,8 @@ const Login = ({ setLoggedIn }) => {
                       </text>
                     </div>
 
-                    <div className="login-form">
 
-                    </div>
+
                     <input className="login-input" type="text" placeholder="ID 입력하기" 
                         value={id}
                         onChange={(e) => setId(e.target.value)}
@@ -85,7 +84,7 @@ const Login = ({ setLoggedIn }) => {
                     {/* 로그인 실패 메시지 표시 */}
                     {error && <div className="login-result">{error}</div>}
                     
-                    <button onClick={handleLogin}>로그인</button>
+                    <button className="login-button" onClick={handleLogin}>로그인</button>
                    
                 </div>
             </div>
