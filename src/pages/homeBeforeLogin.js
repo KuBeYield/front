@@ -3,29 +3,28 @@ import React from "react";
 import Header from "../components/header.js";
 import { BrowserRouter, Routes, Route, Link, useHistory  } from "react-router-dom";
 import "../App.css"; // 스타일 파일을 연결합니다.
+import Loading from "./loading.js";
 
-function HomePage() {
+function HomeBeforeLogin() {
+    
     return (
         <div className="main-container">
             <Header />
             <div className="content">
                 <Link to="/login">
                     <button className="button">
-                        로그인 및 회원가입 하기
+                        로그인
                     </button>
                 </Link>
-
-                <button className="button">
-                    <Link to="/write">편지 작성하기</Link>
-                </button>
-
-                <button className="button">
-                    <Link to="/list">받은 편지 확인하기</Link>
-                </button>
+                <Link to="/signup">
+                    <button className="button">
+                        회원가입 하기
+                    </button>
+                </Link>
             </div>
                 
         </div>
     )
 }
 
-export default HomePage;
+export default HomeBeforeLogin;
