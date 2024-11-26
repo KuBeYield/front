@@ -17,6 +17,16 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false); // 로그인 상태 관리
 
   useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    
+    if (authToken) {
+      console.log("로그인 상태: 토큰 확인 완료");
+      setLoggedIn(true); // 토큰이 존재하면 로그인 상태로 변경
+    } else {
+      console.log("로그인 상태: 토큰 없음");
+      setLoggedIn(false); // 토큰이 없으면 비로그인 상태
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 5000);
@@ -33,7 +43,7 @@ function App() {
             {/* 웹 서비스 소개 페이지 */}
             <Route
               path="/"
-              element={loggedIn ? <HomePage /> : <HomePage />}
+              element={loggedIn ? <HomePage /> : <HomeBeforeLogin />}
             />
             {/* <Route
               path="/"

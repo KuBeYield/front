@@ -13,27 +13,46 @@ function HomePage() {
     const [alarm, setAlarm] = useState(true);
     const navigate = useNavigate();
 
-    function handleLogout() {
-        // 1. 로그인 상태 초기화
-        // setLoggedIn(false); 
-      
-        // 2. 로컬 스토리지에서 토큰 제거
-        localStorage.removeItem("authToken"); 
-      
-        // 3. 홈 또는 로그인 페이지로 이동
-        navigate("/"); 
-      }
+    async function handleLogout() {
+        const token = localStorage.getItem("authToken");
+
+        if (!token) {
+            alert("로그인된 토큰이 없습니다.");
+            return;
+        }
+
+        try {
+            const response = await fetch("https://lettertofuture-api.onrender.com/users/logout", {
+            method: "POST", // 로그아웃 메서드는 API 설계에 따라 달라질 수 있습니다.
+            headers: {
+                "Authorization": `Bearer ${token}`, // Bearer 토큰으로 인증
+                "Content-Type": "application/json",
+            },
+            });
+
+            if (response.ok) {
+            localStorage.removeItem("authToken"); // 클라이언트에서 토큰 삭제
+            alert("로그아웃 성공");
+            navigate("/");
+            } else {
+            const errorData = await response.json();
+            alert("로그아웃 실패:", errorData.message || "Unknown error");
+            }
+        } catch (error) {
+            alert("네트워크 오류:", error.message);
+        }
+    }
 
     // 서버에서 응답 받기
-    // useEffect(() => {
-    //     // 예시 API 호출 (응답에 따라 `alarm` 상태 업데이트)
-    //     fetch("https://example.com/api/check-alarm")
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         setAlarm(data.alarm); // 서버 응답에서 `alarm` 값을 설정
-    //     })
-    //     .catch((error) => console.error("Error fetching alarm data:", error));
-    // }, []);
+    useEffect(() => {
+        // 예시 API 호출 (응답에 따라 `alarm` 상태 업데이트)
+        fetch("https://lettertofuture-api.onrender.com/main")
+        .then((response) => response.json())
+        .then((data) => {
+            setAlarm(data.alarm); // 서버 응답에서 `alarm` 값을 설정
+        })
+        .catch((error) => console.error("Error fetching alarm data:", error));
+    }, []);
 
     return (
         <div className="main-container">

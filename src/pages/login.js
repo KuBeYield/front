@@ -16,7 +16,7 @@ import Header2 from "../components/header2.js";
 
 
 const Login = ({ setLoggedIn }) => {
-    const [id, setId] = useState('');
+    const [userId, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -25,27 +25,31 @@ const Login = ({ setLoggedIn }) => {
   const handleLogin = async () => {
     try {
       // 간단한 유효성 검사
-      if (!id || !password) {
+      if (!userId || !password) {
         setError("※아이디와 비밀번호를 입력하세요.");
         return;
       }
 
       // 백엔드 API 요청 (예제용 URL)
-      const response = await fetch("https://example.com/api/login", {
+
+      const response = await fetch("https://lettertofuture-api.onrender.com/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json", // JSON 응답을 기대
         },
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({
+          userId,
+          password,
+        }),
       });
+      
 
       const data = await response.json();
 
       if (response.ok) {
-        // 로그인 성공 처리
-        setLoggedIn(true); // App 컴포넌트의 로그인 상태 업데이트
         localStorage.setItem("authToken", data.token); // 토큰 저장
-        
+        alert("로그인 성공!");
         setError(""); // 오류 메시지 초기화
         navigate("/"); // 홈으로 이동
       } else {
@@ -74,7 +78,7 @@ const Login = ({ setLoggedIn }) => {
 
 
                     <input className="login-input" type="text" placeholder="ID 입력하기" 
-                        value={id}
+                        value={userId}
                         onChange={(e) => setId(e.target.value)}
                     />
                     <input className="login-input" type="password" placeholder="비밀번호 입력하기"
