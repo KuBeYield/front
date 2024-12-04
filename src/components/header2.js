@@ -6,13 +6,13 @@ import ImageButton from '../components/ImageButton';  // ImageButton 컴포넌�
 import rectangleImage from "../assets/rectangle.png"
 import chevronImage from "../assets/chevron.png"
 
-function Header2(){
+function Header2({ route }){
     return(
         <div >
                 <div className="back-button">
                     <ImageButton 
                         imageUrl={chevronImage}
-                        linkTo="/" 
+                        linkTo={route}
                         altText="Go to Main Page" 
                     />
                     <text className="title2">Letter To Future</text>

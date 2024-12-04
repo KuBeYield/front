@@ -11,12 +11,13 @@ import alarmImage from "../assets/alarm.png"
   
 function HomePage() {
     const [alarm, setAlarm] = useState(true);
+    const [unread, setUnread] = useState(0);  // 안 읽은 편지 개수 관리
     const navigate = useNavigate();
 
     async function handleLogout() {
         const token = localStorage.getItem("authToken");
 
-        if (!token) {
+        if (!token || token === "undefined" || token === "null") {
             alert("로그인된 토큰이 없습니다.");
             return;
         }
@@ -36,7 +37,9 @@ function HomePage() {
             navigate("/");
             } else {
             const errorData = await response.json();
+            
             alert("로그아웃 실패:", errorData.message || "Unknown error");
+
             }
         } catch (error) {
             alert("네트워크 오류:", error.message);
@@ -45,14 +48,34 @@ function HomePage() {
 
     // 서버에서 응답 받기
     useEffect(() => {
-        // 예시 API 호출 (응답에 따라 `alarm` 상태 업데이트)
-        fetch("https://lettertofuture-api.onrender.com/main")
-        .then((response) => response.json())
-        .then((data) => {
-            setAlarm(data.alarm); // 서버 응답에서 `alarm` 값을 설정
-        })
-        .catch((error) => console.error("Error fetching alarm data:", error));
-    }, []);
+        const fetchAlarmData = async () => {
+          try {
+            const token = localStorage.getItem("authToken"); // 로컬 스토리지에서 토큰 가져오기
+      
+            const response = await fetch("https://lettertofuture-api.onrender.com/main", {
+              method: "GET", // 요청 메서드
+              headers: {
+                "Authorization": `Bearer ${token}`, // Bearer 토큰으로 인증
+                "Content-Type": "application/json",
+              },
+            });
+      
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+      
+            const data = await response.json();
+            setAlarm(data.alarm);    // 서버 응답에서 alarm 값을 설정
+            setUnread(data.unread); // 서버 응답에서 unread 값 설정
+            console.log("알람 데이터가 업데이트되었습니다:", data);
+          } catch (error) {
+            console.error("알람 데이터를 불러오는 중 오류 발생:", error);
+          }
+        };
+      
+        fetchAlarmData(); // 비동기 함수 호출
+      }, []);
+      
 
     return (
         <div className="main-container">

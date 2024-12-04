@@ -48,8 +48,8 @@ const Login = ({ setLoggedIn }) => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("authToken", data.token); // 토큰 저장
-        alert("로그인 성공!");
+        localStorage.setItem("authToken", data.accessToken); // 토큰 저장
+        // alert("로그인 성공!");
         setError(""); // 오류 메시지 초기화
         navigate("/"); // 홈으로 이동
       } else {
@@ -61,9 +61,16 @@ const Login = ({ setLoggedIn }) => {
     }
   };
 
+  // Enter 키 처리 함수
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
     return (
         <div className="login-container">
-            <Header2 />
+            <Header2 route={"/"}/>
             {/* 사각형 박스 */}
             <div className="rectangle-box">
                 
@@ -84,6 +91,7 @@ const Login = ({ setLoggedIn }) => {
                     <input className="login-input" type="password" placeholder="비밀번호 입력하기"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={handleKeyDown} // Enter 키 이벤트 연결
                     />
                     {/* 로그인 실패 메시지 표시 */}
                     {error && <div className="login-result">{error}</div>}

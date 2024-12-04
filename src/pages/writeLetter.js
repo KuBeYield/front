@@ -22,7 +22,7 @@ const WriteLetter= () => {
     const [isResultModalOpen, setIsResultModalOpen] = useState(false); // 날짜 선택창 상태
 
 
-    const idList = ["User01", "User02", "User03", "User04"];
+    const idList = ["test1", "test2", "test3", "were1117"];
 
     const handleDateComplete = () => {
         if (!year || !month || !day) {
@@ -35,28 +35,62 @@ const WriteLetter= () => {
         setIsDateModalOpen(false)
     };
   
-    const handleSend = () => {
-      if (!title || !selectedId || !content || !date) {
-        alert("모든 필드를 입력해주세요.");
-        return;
-      }
-  
-      // API 호출 또는 데이터 전송 로직
-      console.log("편지 전송 데이터:", { title, selectedId, content });
-  
-      setIsResultModalOpen(true);
-      // 입력 필드 초기화
-      setTitle("");
-      setSelectedId("");
-      setContent("");
-
-    };
+    const handleSend = async () => {
+        if (!title || !selectedId || !content || !date) {
+          alert("모든 필드를 입력해주세요.");
+          return;
+        }
+      
+        try {
+          const token = localStorage.getItem("authToken"); // 로컬 스토리지에서 인증 토큰 가져오기
+          if (!token) {
+            alert("로그인이 필요합니다.");
+            return;
+          }
+      
+          // API 요청 데이터 준비
+          const requestBody = {
+            recipientId: selectedId,
+            title,
+            content,
+            sendAt: date, // yyyy-mm-dd 형식으로 전달
+          };
+    
+          const response = await fetch("https://lettertofuture-api.onrender.com/letters/write", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${token}`, // 인증 토큰 추가
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
+      
+          const data = await response.json();
+      
+          if (response.ok) {
+            alert("편지가 성공적으로 전송되었습니다.");
+            setIsResultModalOpen(true); // 결과 모달 열기
+      
+            // 입력 필드 초기화
+            setTitle("");
+            setSelectedId("");
+            setContent("");
+            setDate("");
+          } else {
+            alert(`편지 전송 실패: ${data.message || "알 수 없는 오류"}`);
+          }
+        } catch (error) {
+          console.error("편지 전송 중 오류 발생:", error);
+          alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+        }
+      };
+      
     
 
     return (
         
         <div className="main-container">
-            <Header2 />
+            <Header2 route={"/"}/>
             {/* 사각형 박스 */}
             <div className="rectangle-box">
                 <div className="letter-container">
