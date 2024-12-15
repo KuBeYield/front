@@ -28,7 +28,7 @@ function LetterDetails() {
         // API 호출하여 편지 상세 정보 가져오기
         const fetchLetterDetails = async () => {
             try {
-                const response = await fetch(`https://lettertofuture-api.onrender.com/letters/archive/${letterNumber}`, {
+                const response = await fetch(`http://localhost:8080/backend/letters/archive/${letterNumber}`, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,
