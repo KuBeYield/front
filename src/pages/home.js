@@ -52,7 +52,7 @@ function HomePage() {
           try {
             const token = localStorage.getItem("authToken"); // 로컬 스토리지에서 토큰 가져오기
       
-            const response = await fetch("https://lettertofuture-api.onrender.com/main", {
+            const response = await fetch("http://localhost:8080/backend/main", {
               method: "GET", // 요청 메서드
               headers: {
                 "Authorization": `Bearer ${token}`, // Bearer 토큰으로 인증
