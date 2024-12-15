@@ -22,20 +22,24 @@
 .letter-details-card h2 {
     margin-top: 150px;
     color: #555;
+    padding: 10px 30px;
 }
 
 .letter-date {
     font-size: 14px;
     color: #888;
     margin-bottom: 16px;
+    padding: 10px 30px;
 }
 
 .letter-content {
     margin-bottom: 16px;
+    padding: 10px 30px;
 }
 
 .letter-sender {
     font-size: 14px;
     color: #555;
     text-align: right;
+    padding: 10px 30px;
 }

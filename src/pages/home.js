@@ -32,13 +32,13 @@ function HomePage() {
             });
 
             if (response.ok) {
-            localStorage.removeItem("authToken"); // 클라이언트에서 토큰 삭제
-            alert("로그아웃 성공");
-            navigate("/");
+                localStorage.removeItem("authToken"); // 클라이언트에서 토큰 삭제
+                alert("로그아웃 성공");
+                navigate("/");
             } else {
-            const errorData = await response.json();
-            
-            alert("로그아웃 실패:", errorData.message || "Unknown error");
+                const errorData = await response.json();
+                
+                alert("로그아웃 실패:", errorData.message || "Unknown error");
 
             }
         } catch (error) {

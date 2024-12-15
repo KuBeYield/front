@@ -13,6 +13,9 @@ const WriteLetter= () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [selectedId, setSelectedId] = useState("");
+    const [searchQuery, setSearchQuery] = useState(""); // 검색 입력 값
+    const [userList, setUserList] = useState([]); // 서버에서 받아온 유저 리스트
+    
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [year, setYear] = useState("");
     const [month, setMonth] = useState("");
@@ -20,9 +23,6 @@ const WriteLetter= () => {
     const [date, setDate] = useState(null);
     const [isDateModalOpen, setIsDateModalOpen] = useState(false); // 날짜 선택창 상태
     const [isResultModalOpen, setIsResultModalOpen] = useState(false); // 날짜 선택창 상태
-
-
-    const idList = ["test1", "test2", "test3", "were1117"];
 
     const handleDateComplete = () => {
         if (!year || !month || !day) {
@@ -33,6 +33,46 @@ const WriteLetter= () => {
         setDate(formattedDate);
         alert(`날짜가 설정되었습니다: ${formattedDate}`);
         setIsDateModalOpen(false)
+    };
+
+    const handleSearchUser = async () => {
+        if (!searchQuery) {
+            alert("검색어를 입력해주세요.");
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
+
+            const response = await fetch(
+                "http://localhost:8080/backend/write/recipientIdCheck",
+                {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ userId: searchQuery }),
+                }
+            );
+
+            if (response.ok) {
+                
+                const data = await response.json();
+                setUserList(data.results || []); // 응답 결과를 사용자 목록으로 저장
+                setIsDropdownOpen(true); // 검색 결과 드롭다운 열기
+            } else {
+                const errorData = await response.json();
+                alert(`검색 실패: ${errorData.message || "알 수 없는 오류"}`);
+            }
+        } catch (error) {
+            console.error("유저 검색 중 오류 발생:", error);
+            alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+        }
     };
   
     const handleSend = async () => {
@@ -101,8 +141,45 @@ const WriteLetter= () => {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+
+
+                    {/* 유저 검색 */}
+                    <div className="user-search-container">
+                        <input
+                            className="input-field2"
+                            type="text"
+                            placeholder="유저 아이디 검색"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button className="search-button" onClick={handleSearchUser}>
+                            검색
+                        </button>
+                    </div>
+
+                    {/* 사용자 검색 결과 드롭다운 */}
+                    {isDropdownOpen && userList.length > 0 && (
+                        <div className="dropdown-container">
+                            <ul className="dropdown-menu">
+                                {userList.map((userId, index) => (
+                                    <li
+                                        key={index}
+                                        className="dropdown-item"
+                                        onClick={() => {
+                                            setSelectedId(userId); // 선택된 ID 저장
+                                            setIsDropdownOpen(false); // 드롭다운 닫기
+                                            setSearchQuery(userId); // 검색창에 선택된 ID 표시
+                                        }}
+                                    >
+                                        {userId}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     {/* ID 선택 (드롭다운) */}
-                    <div className="dropdown-container">
+                    {/* <div className="dropdown-container">
                         <button
                             className="dropdown-toggle"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -125,7 +202,7 @@ const WriteLetter= () => {
                             ))}
                         </ul>
                         )}
-                    </div>
+                    </div> */}
                     <textarea
                         className="textarea-field"
                         placeholder="내년 오늘에 어떤 이야기를 남기고 싶나요? 미래에게 편지를 작성해 주세요"

@@ -60,6 +60,28 @@
   border-color: #a5a5ff;
 }
 
+
+.input-field2 {
+  color:#BBBBBB;
+  width: 317px;
+  padding: 10px;
+  margin-bottom: 18px;
+  border: none;
+  box-shadow: 0px 12px 15px rgba(87, 58, 58, 0.1);
+  border-radius: 50px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.input-field2::placeholder {
+  color: #BBBBBB;
+}
+
+.input-field2:focus {
+  border-color: #a5a5ff;
+}
+
 /* 텍스트 영역 */
 .textarea-field {
   width: 317px;
@@ -274,3 +296,5 @@
 .modal-close-button:hover {
   background: #8585ff;
 }
+
+
