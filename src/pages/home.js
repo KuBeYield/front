@@ -23,7 +23,7 @@ function HomePage() {
         }
 
         try {
-            const response = await fetch("https://lettertofuture-api.onrender.com/users/logout", {
+            const response = await fetch("http://localhost:8080/backend/users/logout", {
             method: "POST", // 로그아웃 메서드는 API 설계에 따라 달라질 수 있습니다.
             headers: {
                 "Authorization": `Bearer ${token}`, // Bearer 토큰으로 인증
