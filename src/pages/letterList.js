@@ -22,7 +22,7 @@ function LetterList() {
     // 서버에서 편지 목록을 불러오는 API 호출
     const fetchLetters = async () => {
       try {
-        const response = await fetch("https://lettertofuture-api.onrender.com/letters/archive", {
+        const response = await fetch("http://localhost:8080/backend/letters/archive", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
