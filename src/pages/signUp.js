@@ -26,7 +26,7 @@ const SignupPage = () => {
 
     try {
       const response = await fetch(
-        `https://lettertofuture-api.onrender.com/users/signup/idCheck`,
+        `http://localhost:8080/backend/users/signup/idCheck`,
         {
           method: "POST",
           headers: {
@@ -76,7 +76,7 @@ const SignupPage = () => {
         return;
       }
 
-      const response = await fetch("https://lettertofuture-api.onrender.com/users/signup", {
+      const response = await fetch("http://localhost:8080/backend/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
