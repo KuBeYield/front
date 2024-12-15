@@ -32,7 +32,7 @@ const Login = ({ setLoggedIn }) => {
 
       // 백엔드 API 요청 (예제용 URL)
 
-      const response = await fetch("https://lettertofuture-api.onrender.com/users/login", {
+      const response = await fetch("http://localhost:8080/backend/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
