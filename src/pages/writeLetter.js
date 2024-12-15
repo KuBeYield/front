@@ -56,7 +56,7 @@ const WriteLetter= () => {
             sendAt: date, // yyyy-mm-dd 형식으로 전달
           };
     
-          const response = await fetch("https://lettertofuture-api.onrender.com/letters/write", {
+          const response = await fetch("http://localhost:8080/backend/letters/write", {
             method: "POST",
             headers: {
               "Authorization": `Bearer ${token}`, // 인증 토큰 추가
