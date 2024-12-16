@@ -49,7 +49,7 @@ const WriteLetter= () => {
             }
 
             const response = await fetch(
-                "http://localhost:8080/backend/write/recipientIdCheck",
+                "http://localhost:8080/backend/letters/write/recipientIdCheck",
                 {
                     method: "POST",
                     headers: {
