@@ -15,6 +15,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState("");
   const [isUserIdAvailable, setIsUserIdAvailable] = useState(null);
   const [error, setError] = useState("");
+  const [buttonText, setButtonText] = useState("중복확인");
   const navigate = useNavigate();
 
   // 아이디 중복 확인 함수
@@ -41,11 +42,15 @@ const SignupPage = () => {
       if (response.ok) {
         setIsUserIdAvailable(true);
         alert("사용 가능한 아이디입니다.");
+        setButtonText("사용 가능");
+
       } else {
         setIsUserIdAvailable(false);
+        setError(data.message || "이미 사용 중인 아이디입니다.");
         alert(data.message || "이미 사용 중인 아이디입니다.");
       }
     } catch (err) {
+      setError("서버와 통신 중 오류가 발생했습니다.");
       alert("서버와 통신 중 오류가 발생했습니다.");
     }
   };
@@ -97,6 +102,7 @@ const SignupPage = () => {
         setEmail("");
         setPassword("");
         setIsUserIdAvailable(null);
+        setButtonText("중복확인");
         navigate("/");
       } else {
         alert(data.message || "회원가입에 실패했습니다.");
@@ -108,7 +114,7 @@ const SignupPage = () => {
 
   return (
     <div className="login-container">
-      <Header2 />
+      <Header2 route={"/"}/>
       <div className="rectangle-box">
         <div className="login-form">
           <div className="login-title-box">
@@ -128,7 +134,7 @@ const SignupPage = () => {
               className="duplicate-check-button"
               onClick={handleCheckUserId}
             >
-              중복 확인
+              {buttonText}
             </button>
           </div>
           <br />

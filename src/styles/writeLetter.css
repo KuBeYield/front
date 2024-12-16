@@ -82,6 +82,15 @@
   border-color: #a5a5ff;
 }
 
+.search-button{
+  border-radius: 15px;
+    background-color: #D4BFBF;
+    color: white;
+    border: none;
+    bottom: 15px;
+    right: 10px;
+}
+
 /* 텍스트 영역 */
 .textarea-field {
   width: 317px;
